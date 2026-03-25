@@ -1,63 +1,39 @@
-/*using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using YG;
-using UnityEngine.UI;
-using TMPro;
+using YG; // Оставляем этот namespace
 
-public class Ads: MonoBehaviour
+public class Ads : MonoBehaviour
 {
- public string idAdv;
-
     public Hero script;
-    
-    void Start()
+
+    private void Start()
     {
-      script = GetComponent<Hero>();
+        script = GetComponent<Hero>();
     }
 
-    void Update()
+    private void OnEnable()
     {
-       //script.moneyText.text = script.FormatNumber(script.money) + " $";
-    }
-
-      private void OnEnable()
-      {
+        // Подписываемся на событие (метод должен принимать string)
         YG2.onRewardAdv += Rewarded;
-      } 
+    }
 
-      private void OnDisable()
-      {
+    private void OnDisable()
+    {
+        // Обязательно отписываемся, чтобы избежать утечек памяти
         YG2.onRewardAdv -= Rewarded;
-      }
+    }
 
-      private void Rewarded(string id)
-      {
-        if(id == idAdv)
-        {
-            SetReward();
-             script.moneyText.text = script.FormatNumber(script.money) + " $";
-        }
-      } 
+    // Обработчик события
+    void Rewarded(string id)
+    {
+        // Если у вас несколько типов наград, можно проверять id
+        script.money += 500;
+        Debug.Log("Игрок получил награду!");
+    }
 
-      public void SetReward()
-      {
-        int money = PlayerPrefs.GetInt("money");
-        PlayerPrefs.SetInt("money", script.money * 2);
-         //PlayerPrefs.SetInt("money", script.totalMoney * 2);
-     // script.moneyText.text = script.FormatNumber(script.money) + " $";
-     
-      }
-
-      public void ShowRewardAdv_UseCallback()
-      {
-        YG2.RewardedAdvShow(idAdv, () =>
-        {
-
-            SetReward();
-        });
-      }
-   
-    
+    // Метод для вызова самой рекламы (привяжите к кнопке)
+    public void ShowAd()
+    {
+        // Вызов окна с рекламой за вознаграждение
+        YG2.RewardedAdvShow("награда_1");
+    }
 }
-*/

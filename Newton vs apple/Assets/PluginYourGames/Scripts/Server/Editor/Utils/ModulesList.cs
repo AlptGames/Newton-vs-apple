@@ -25,9 +25,7 @@ namespace YG.EditorScr
             Module pluginModule = new Module
             {
                 nameModule = InfoYG.NAME_PLUGIN,
-                projectVersion = pluginVersion,
-                platform = false,
-                tool = false
+                projectVersion = pluginVersion
             };
             modules.Add(pluginModule);
 
@@ -36,9 +34,6 @@ namespace YG.EditorScr
 
             if (File.Exists(InfoYG.FILE_MODULES_PC))
                 modulesTextLines = FileYG.ReadAllLines(InfoYG.FILE_MODULES_PC);
-
-            if (modulesTextLines == null)
-                modulesTextLines = new string[0];
 
             for (int i = 0; i < modulesTextLines.Length; i++)
             {
@@ -58,11 +53,9 @@ namespace YG.EditorScr
                 Module module = new Module
                 {
                     nameModule = name,
-                    projectVersion = version,
-                    platform = false,
-                    tool = false
+                    projectVersion = version
                 };
-
+               
                 modules.Add(module);
             }
 
@@ -88,46 +81,13 @@ namespace YG.EditorScr
                 {
                     nameModule = platfomNames[i].Replace("Integration", ""),
                     projectVersion = version,
-                    platform = true,
-                    tool = false
+                    platform = true
                 };
                 modules.Add(module);
             }
 
-            if (Directory.Exists(InfoYG.PATCH_PC_TOOLS))
-            {
-                string[] toolFolders = Directory.GetDirectories(InfoYG.PATCH_PC_TOOLS);
-                string[] toolNames = new string[toolFolders.Length];
-
-                for (int i = 0; i < toolFolders.Length; i++)
-                    toolNames[i] = Path.GetFileName(toolFolders[i]);
-
-                for (int i = 0; i < toolNames.Length; i++)
-                {
-                    string version = "imported";
-                    string toolVersionPath = $"{InfoYG.PATCH_PC_TOOLS}/{toolNames[i]}/Version.txt";
-
-                    if (File.Exists(toolVersionPath))
-                    {
-                        version = FileYG.ReadAllText(toolVersionPath);
-                        version = version.Replace("v", string.Empty);
-                    }
-
-                    Module module = new Module
-                    {
-                        nameModule = toolNames[i],
-                        projectVersion = version,
-
-                        platform = false,
-                        tool = true
-                    };
-
-                    modules.Add(module);
-                }
-            }
-
             // Cloud
-            if (cloud != null && cloud.modules != null && cloud.modules.Length > 0)
+            if (cloud != null && cloud.modules.Length > 0)
             {
                 for (int i = 0; i < cloud.modules.Length; i++)
                 {
@@ -147,8 +107,6 @@ namespace YG.EditorScr
                                 critical = cloud.modules[i].critical,
                                 noLoad = cloud.modules[i].noLoad,
                                 platform = modules[j].platform,
-                                tool = cloud.modules[i].tool,
-
                                 dependencies = cloud.modules[i].dependencies
                             };
                             modules[j] = module;
@@ -170,8 +128,6 @@ namespace YG.EditorScr
                             critical = cloud.modules[i].critical,
                             noLoad = cloud.modules[i].noLoad,
                             platform = cloud.modules[i].platform,
-                            tool = cloud.modules[i].tool,
-
                             dependencies = cloud.modules[i].dependencies
                         };
                         modules.Add(module);
@@ -184,7 +140,9 @@ namespace YG.EditorScr
             foreach (Module module in modules)
             {
                 if (selectModulesList.Contains(module.nameModule))
+                {
                     module.select = true;
+                }
             }
 
             return modules;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AngryApple : MonoBehaviour
 {
-   public GameObject[] itemPrefabs; // Массив префабов предметов (например, яблок)
+    public GameObject[] itemPrefabs; // Массив префабов предметов (например, яблок)
     public float initialSpawnRate = 2f; // Начальный интервал между спавном предметов (в секундах)
     public float spawnRateDecrease = 0.1f; // Величина, на которую уменьшается интервал спавна
     public float spawnRateDecreaseInterval = 10f; // Как часто уменьшается интервал спавна (каждые N секунд)

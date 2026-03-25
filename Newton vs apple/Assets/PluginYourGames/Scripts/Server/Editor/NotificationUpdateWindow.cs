@@ -22,7 +22,7 @@ namespace YG.EditorScr
             if (!ModulesInstaller.ExistUpdates(modules)) return;
 
             PluginPrefs.Load();
-            if (!HasAnyUpdates(modules)) return;
+            if (PluginPrefs.GetInt(NOTIFICATION_UPDATE_KEY, 0) == 1) return;
 
             ShowWindow();
         }
@@ -68,7 +68,7 @@ namespace YG.EditorScr
 
             modules = ModulesList.GetGeneratedList(ServerInfo.saveInfo);
 
-            if (!HasAnyUpdates(modules))
+            if (!ModulesInstaller.ExistUpdates(modules))
             {
                 closing = true;
                 Unsubscribe();
@@ -191,23 +191,5 @@ namespace YG.EditorScr
                 return v;
             }
         }
-
-        private static bool HasAnyUpdates(List<Module> list)
-        {
-            if (list == null || list.Count == 0)
-                return false;
-
-            foreach (var m in list)
-            {
-                if (string.IsNullOrEmpty(m.projectVersion))
-                    continue;
-
-                if (!ModulesInstaller.IsModuleCurrentVersion(m))
-                    return true;
-            }
-
-            return false;
-        }
-
     }
 }

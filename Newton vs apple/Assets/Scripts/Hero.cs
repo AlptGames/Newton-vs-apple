@@ -19,6 +19,7 @@ public class Hero : MonoBehaviour
     private Rigidbody2D rb;       // Компонент Rigidbody2D для физики
     private bool facingRight = true; // Направление взгляда игрока
     private bool isDead = false; // Флаг, указывающий, мертв ли игрок
+    private float horizontalMove = 0f;
 
     void Start()
     {
@@ -35,21 +36,21 @@ public class Hero : MonoBehaviour
 
     void Update()
     {
-        // Если игрок мертв, прекращаем обработку ввода
-        if (isDead)
-        {
-            return;
-        }
+        if (isDead) return;
 
-        // Получаем ввод по горизонтальной оси
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        // Складываем ввод с клавиатуры и с экранных кнопок
+        // Mathf.Clamp ограничит значение в диапазоне от -1 до 1
+        float keyboardInput = Input.GetAxisRaw("Horizontal");
+        float combinedInput = Mathf.Clamp(keyboardInput + horizontalMove, -1f, 1f);
 
-        // Двигаем игрока
-        rb.velocity = new Vector2(horizontalInput * moveSpeed, rb.velocity.y);
+        rb.velocity = new Vector2(combinedInput * moveSpeed, rb.velocity.y);
 
-        // Разворот спрайта игрока
-        HandleFlip(horizontalInput);
+        HandleFlip(combinedInput);
     }
+
+    public void OnPointerDownLeft() => horizontalMove = -1f;
+    public void OnPointerDownRight() => horizontalMove = 1f;
+    public void OnPointerUp() => horizontalMove = 0f;
 
     void HandleFlip(float horizontalInput)
     {
@@ -125,8 +126,8 @@ public class Hero : MonoBehaviour
         // Замораживаем время, чтобы показать панель
         Time.timeScale = 0f;
 
-        // Ждем 0.5 секунды
-        yield return new WaitForSecondsRealtime(0.5f);
+        // Ждем 5 секунд
+        yield return new WaitForSecondsRealtime(5f);
 
         // Возвращаем время к норме (если нужно для других процессов)
         Time.timeScale = 1f;
