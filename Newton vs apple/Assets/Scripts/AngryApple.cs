@@ -12,6 +12,8 @@ public class AngryApple : MonoBehaviour
     public float spawnAreaRight = 5f; // Правая граница зоны спавна по оси X
     public float spawnYPosition = 10f; // Высота, с которой падают предметы
     public string floorTag = "Floor"; // Тэг объектов, считающихся полом
+      public string PlayerTag = "Player"; // Тэг пола
+
 
     private float currentSpawnRate;
     private float spawnTimer;
@@ -77,6 +79,8 @@ public class ItemDestruction : MonoBehaviour
 {
     public string floorTag; // Тэг пола
 
+     public string PlayerTag; // Тэг пола
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         // Проверяем, столкнулся ли предмет с полом
@@ -85,4 +89,5 @@ public class ItemDestruction : MonoBehaviour
             Destroy(gameObject); // Уничтожаем предмет
         }
     }
+
 }

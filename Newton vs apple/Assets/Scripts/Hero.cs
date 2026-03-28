@@ -127,7 +127,7 @@ public class Hero : MonoBehaviour
         Time.timeScale = 0f;
 
         // Ждем 5 секунд
-        yield return new WaitForSecondsRealtime(5f);
+        yield return new WaitForSecondsRealtime(1f);
 
         // Возвращаем время к норме (если нужно для других процессов)
         Time.timeScale = 1f;
