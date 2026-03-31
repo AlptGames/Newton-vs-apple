@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
-public class Hero : MonoBehaviour
+public class Hero1 : MonoBehaviour
 {
     public float moveSpeed = 5f; // Скорость передвижения игрока
     public int maxLives = 3;     // Максимальное количество жизней
@@ -74,7 +74,7 @@ public class Hero : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+  /*  void OnCollisionEnter2D(Collision2D other)
     {
         // Проверяем столкновение с объектом, имеющим указанный тэг
         if (other.gameObject.CompareTag(hazardTag))
@@ -83,7 +83,7 @@ public class Hero : MonoBehaviour
         }
     }
 
-   public void TakeDamage()
+    void TakeDamage()
     {
         // Если игрок уже мертв, не отнимаем жизни
         if (isDead)
@@ -100,7 +100,7 @@ public class Hero : MonoBehaviour
             isDead = true; // Устанавливаем флаг смерти
             StartCoroutine(HandleGameOver()); // Запускаем корутину для завершения игры
         }
-    }
+    }*/
 
     void UpdateLivesUI()
     {
