@@ -18,10 +18,12 @@ public class Hero1 : MonoBehaviour
 
     private Rigidbody2D rb;       // Компонент Rigidbody2D для физики
     private bool facingRight = true; // Направление взгляда игрока
-    private bool isDead = false; // Флаг, указывающий, мертв ли игрок
+    [HideInInspector] public bool isDead = false; // Флаг, указывающий, мертв ли игрок
     private float horizontalMove = 0f;
     public AudioSource damageSound;
-        public AudioSource GameOVerSound;
+    public AudioSource GameOVerSound;
+
+    public ItemCounter1 floor;
 
     void Start()
     {
@@ -74,16 +76,28 @@ public class Hero1 : MonoBehaviour
         transform.localScale = scaler;
     }
 
-  /*  void OnCollisionEnter2D(Collision2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         // Проверяем столкновение с объектом, имеющим указанный тэг
         if (other.gameObject.CompareTag(hazardTag))
         {
-            TakeDamage();
+            TakeApple();
+            Destroy(other.gameObject);
         }
     }
 
-    void TakeDamage()
+    public void TakeApple()
+    {
+        if (isDead)
+        {
+            return;
+        }
+        floor.itemCount++;
+        floor.UpdateCountDisplay();
+
+    }
+
+    public void TakeDamage()
     {
         // Если игрок уже мертв, не отнимаем жизни
         if (isDead)
@@ -100,7 +114,8 @@ public class Hero1 : MonoBehaviour
             isDead = true; // Устанавливаем флаг смерти
             StartCoroutine(HandleGameOver()); // Запускаем корутину для завершения игры
         }
-    }*/
+    }
+
 
     void UpdateLivesUI()
     {
