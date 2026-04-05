@@ -9,7 +9,7 @@ public class Hero1 : MonoBehaviour
 {
     public float moveSpeed = 5f; // Скорость передвижения игрока
     public int maxLives = 3;     // Максимальное количество жизней
-    private int currentLives;    // Текущее количество жизней
+    public int currentLives;    // Текущее количество жизней
 
     public GameObject[] lifeHearts; // Массив UI Image для отображения сердец
     public string hazardTag = "Hazard"; // Тэг для объектов, наносящих урон
@@ -112,12 +112,18 @@ public class Hero1 : MonoBehaviour
         if (currentLives <= 0)
         {
             isDead = true; // Устанавливаем флаг смерти
-            StartCoroutine(HandleGameOver()); // Запускаем корутину для завершения игры
+            if (losePanel != null)
+            {
+                losePanel.SetActive(true);
+                GameOVerSound.Play();
+                Time.timeScale = 0f;
+            }
+
         }
     }
 
 
-    void UpdateLivesUI()
+    public void UpdateLivesUI()
     {
         // Отключаем изображения сердец, начиная с конца массива
         for (int i = 0; i < lifeHearts.Length; i++)
@@ -133,7 +139,7 @@ public class Hero1 : MonoBehaviour
         }
     }
 
-    IEnumerator HandleGameOver()
+    /*IEnumerator HandleGameOver()
     {
         // Показываем панель проигрыша
         if (losePanel != null)
@@ -154,4 +160,5 @@ public class Hero1 : MonoBehaviour
         // Загружаем сцену проигрыша
         SceneManager.LoadScene(gameOverSceneName);
     }
+    */
 }
