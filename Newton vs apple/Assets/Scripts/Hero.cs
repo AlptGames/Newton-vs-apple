@@ -9,7 +9,7 @@ public class Hero : MonoBehaviour
 {
     public float moveSpeed = 5f; // Скорость передвижения игрока
     public int maxLives = 3;     // Максимальное количество жизней
-    private int currentLives;    // Текущее количество жизней
+    [HideInInspector] public int currentLives;    // Текущее количество жизней
 
     public GameObject[] lifeHearts; // Массив UI Image для отображения сердец
     public string hazardTag = "Hazard"; // Тэг для объектов, наносящих урон
@@ -18,10 +18,10 @@ public class Hero : MonoBehaviour
 
     private Rigidbody2D rb;       // Компонент Rigidbody2D для физики
     private bool facingRight = true; // Направление взгляда игрока
-    private bool isDead = false; // Флаг, указывающий, мертв ли игрок
+    [HideInInspector] public bool isDead = false; // Флаг, указывающий, мертв ли игрок
     private float horizontalMove = 0f;
     public AudioSource damageSound;
-        public AudioSource GameOVerSound;
+    public AudioSource GameOVerSound;
 
     void Start()
     {
@@ -80,6 +80,7 @@ public class Hero : MonoBehaviour
         if (other.gameObject.CompareTag(hazardTag))
         {
             TakeDamage();
+            Destroy(other.gameObject);
         }
     }
 
@@ -98,11 +99,16 @@ public class Hero : MonoBehaviour
         if (currentLives <= 0)
         {
             isDead = true; // Устанавливаем флаг смерти
-            StartCoroutine(HandleGameOver()); // Запускаем корутину для завершения игры
+            if (losePanel != null)
+            {
+                losePanel.SetActive(true);
+                GameOVerSound.Play();
+                Time.timeScale = 0f;
+            }
         }
     }
 
-    void UpdateLivesUI()
+    public void UpdateLivesUI()
     {
         // Отключаем изображения сердец, начиная с конца массива
         for (int i = 0; i < lifeHearts.Length; i++)
@@ -116,27 +122,5 @@ public class Hero : MonoBehaviour
                 lifeHearts[i].SetActive(false); // Скрываем сердце
             }
         }
-    }
-
-    IEnumerator HandleGameOver()
-    {
-        // Показываем панель проигрыша
-        if (losePanel != null)
-        {
-            losePanel.SetActive(true);
-            GameOVerSound.Play();
-        }
-
-        // Замораживаем время, чтобы показать панель
-        Time.timeScale = 0f;
-
-        // Ждем 5 секунд
-        yield return new WaitForSecondsRealtime(3f);
-
-        // Возвращаем время к норме (если нужно для других процессов)
-        Time.timeScale = 1f;
-
-        // Загружаем сцену проигрыша
-        SceneManager.LoadScene(gameOverSceneName);
     }
 }

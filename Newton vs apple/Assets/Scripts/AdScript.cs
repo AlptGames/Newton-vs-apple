@@ -4,10 +4,18 @@ using YG;
 
 public class AdScript : MonoBehaviour
 {
-    public Hero1 heroScript;
+    public Hero1 heroScript1;
+    public Hero heroScript;
+
+    public int whatLevel = 1;
 
     private void OnEnable() => YG2.onRewardAdv += GetReward;
     private void OnDisable() => YG2.onRewardAdv -= GetReward;
+
+    public void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
 
     public void OpenAd()
     {
@@ -18,23 +26,42 @@ public class AdScript : MonoBehaviour
     {
         if (id == "gold_reward")
         {
-            Debug.Log("Награда получена!");
-
-            // 1. Возвращаем данные игрока
-            heroScript.currentLives = 1;
-            heroScript.isDead = false;
-            heroScript.UpdateLivesUI();
-
-            // 2. ТЕПЕРЬ ВКЛЮЧАЕМ ПАНЕЛЬ ОБРАТНО (раскомментировано)
-            if (heroScript.losePanel != null)
+            if (whatLevel == 3)
             {
-                heroScript.losePanel.SetActive(false);
-            }
+                // 1. Возвращаем данные игрока
+                heroScript1.currentLives = 1;
+                heroScript1.isDead = false;
+                heroScript1.UpdateLivesUI();
 
-            // 3. Запускаем корутину с подготовкой
-            StartCoroutine(ResumeWithDelay());
+                // 2. ТЕПЕРЬ ВКЛЮЧАЕМ ПАНЕЛЬ ОБРАТНО (раскомментировано)
+                if (heroScript1.losePanel != null)
+                {
+                    heroScript1.losePanel.SetActive(false);
+                }
+
+                // 3. Запускаем корутину с подготовкой
+                StartCoroutine(ResumeWithDelay());
+            }
+            if (whatLevel == 1)
+            {
+                // 1. Возвращаем данные игрока
+                heroScript.currentLives = 1;
+                heroScript.isDead = false;
+                heroScript.UpdateLivesUI();
+
+                // 2. ТЕПЕРЬ ВКЛЮЧАЕМ ПАНЕЛЬ ОБРАТНО (раскомментировано)
+                if (heroScript.losePanel != null)
+                {
+                    heroScript.losePanel.SetActive(false);
+                }
+
+                // 3. Запускаем корутину с подготовкой
+                StartCoroutine(ResumeWithDelay());
+            }
+            Debug.Log("Награда получена!");
         }
     }
+
 
     IEnumerator ResumeWithDelay()
     {
@@ -52,8 +79,8 @@ public class AdScript : MonoBehaviour
         // Включаем время
         Time.timeScale = 1f;
 
-        // Сбрасываем управление игрока (на случай залипания кнопок)
-        heroScript.OnPointerUp();
+        if (whatLevel == 3) { heroScript1.OnPointerUp(); }
+        else if (whatLevel == 1) { heroScript.OnPointerUp(); }
 
         Debug.Log("Игра погнала! Время: " + Time.timeScale);
     }

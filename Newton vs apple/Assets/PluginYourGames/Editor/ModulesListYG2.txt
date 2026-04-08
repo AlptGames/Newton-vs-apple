@@ -1,4 +1,4 @@
-AutoTranslateLangs v1.002
+AutoTranslateLangs v1.003
 BannerAdv v1.0
 Localization v1.02
 RewardedAdv v1.011

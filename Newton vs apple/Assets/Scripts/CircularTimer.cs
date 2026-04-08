@@ -9,17 +9,19 @@ public class CircularTimer : MonoBehaviour
 
     public GameObject ADButton;
 
-    void Start()
+    void OnEnable()
     {
         currentTime = maxTime;
+        timerImage.fillAmount = 1f; // Сразу ставим полное заполнение
     }
 
     void Update()
     {
         if (currentTime > 0)
         {
-            currentTime -= Time.deltaTime; // Уменьшаем время каждый кадр
-            // Рассчитываем процент заполнения (от 1 до 0)
+            // Используем unscaledDeltaTime, чтобы таймер шел даже при Time.timeScale = 0
+            currentTime -= Time.unscaledDeltaTime;
+
             timerImage.fillAmount = currentTime / maxTime;
         }
         else
