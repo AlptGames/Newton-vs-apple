@@ -280,7 +280,14 @@ PlayerSettings:
   AndroidMinifyDebug: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 12cfed8868b41904e982d7ceff79dc1d, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons:
   - m_BuildTarget: Android
     m_Icons:
@@ -665,14 +672,14 @@ PlayerSettings:
   blurSplashScreenBackground: 1
   spritePackerPolicy: 
   webGLMemorySize: 32
-  webGLExceptionSupport: 1
+  webGLExceptionSupport: 2
   webGLNameFilesAsHashes: 0
   webGLShowDiagnostics: 0
   webGLDataCaching: 1
   webGLDebugSymbols: 0
   webGLEmscriptenArgs: 
   webGLModulesDirectory: 
-  webGLTemplate: APPLICATION:Default
+  webGLTemplate: PROJECT:YandexGames
   webGLAnalyzeBuildSize: 0
   webGLUseEmbeddedResources: 0
   webGLCompressionFormat: 0
@@ -688,23 +695,24 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    LinuxHeadlessSimulation: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    Nintendo Switch: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    PS4: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    PS5: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    Standalone: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    WebGL: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    Windows Store Apps: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    XboxOne: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    iPhone: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
-    tvOS: PLUGIN_YG_2;TMP_YG2;Localization_yg;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;AutoTranslateLangs_yg
+    Android: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    LinuxHeadlessSimulation: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    Nintendo Switch: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    PS4: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    PS5: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    Standalone: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    WebGL: PLUGIN_YG_2;TMP_YG2;InterstitialAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;StickyAdv_yg;BannerAdv_yg;RU_YG2;YandexGamesPlatform_yg
+    Windows Store Apps: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    XboxOne: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    iPhone: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
+    tvOS: PLUGIN_YG_2;TMP_YG2;BannerAdv_yg;StickyAdv_yg;RewardedAdv_yg;Localization_yg;AutoTranslateLangs_yg;RU_YG2;InterstitialAdv_yg;YandexGamesPlatform_yg
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   managedStrippingLevel:
+    Android: 4
     EmbeddedLinux: 1
     GameCoreScarlett: 1
     GameCoreXboxOne: 1
@@ -713,8 +721,9 @@ PlayerSettings:
     PS5: 1
     QNX: 1
     Stadia: 1
+    Standalone: 4
     VisionOS: 1
-    WebGL: 1
+    WebGL: 4
     Windows Store Apps: 1
     XboxOne: 1
     iPhone: 1

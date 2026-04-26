@@ -1,0 +1,3 @@
+﻿Build path: C:/Users/Марк/Desktop/AndroidNewton/NewtonVsApple.apk
+Build number: 3
+PluginYG version: 2.009
